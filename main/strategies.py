@@ -35,11 +35,6 @@ class TestStrategy(bt.Strategy):
         if not self.position :
 
             self.log('Close, %.2f' % self.dataclose[0])
-
-            # print(len(self))
-            # print(self.order)
-            # print(self.position)
-
             if self.dataclose[0] < self.dataclose[-1] : 
                 if self.dataclose[-1] < self.dataclose[-2] :
 
@@ -50,11 +45,3 @@ class TestStrategy(bt.Strategy):
                 self.log(f'SELL CREATED{self.dataclose[0]}')
                 self.order = self.sell()
 
-
-# class DivergenceStrat(bt.Strategy) :
-
-
-#     def __init__(self) :
-#         # Keep a reference to the "close" line in the data[0] dataseries
-#         self.dataclose = self.datas[0].close
-#         self.order =  None

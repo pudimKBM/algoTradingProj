@@ -33,26 +33,7 @@ data = btfeeds.GenericCSVData(
         openinterest=-1,
         compression=60
 
-)
-
-
-
-# dataframe = pandas.read_csv(dataname,
-#                                 header=0,
-#                                 parse_dates=True)
-
-# # data = bt.feeds.YahooFinanceCSVData(
-        
-# #         # Do not pass values before this date
-# #         fromdate=datetime.datetime(2000, 1, 1),
-# #         # Do not pass values after this date
-# #         todate=datetime.datetime(2000, 12, 31),
-# #         reverse=False)
-# # print(dataframe)
-
-# # print(dataframe["Local time"])
-# data = bt.feeds.PandasData(dataname=dataframe)
-
+        )
 
 cerebro.adddata(data)
 
