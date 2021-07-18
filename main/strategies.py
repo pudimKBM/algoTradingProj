@@ -14,23 +14,22 @@ class TestStrategy(bt.Strategy):
 
     def notify_order(self, order) :
         if order.status in [order.Submitted, order.Accepted] :
+            print(order)
             return
 
         if order.status in [order.Completed] :
             if order.isbuy() :
-                ...
                 self.log(f'BUY EXECUTED{order.executed.price}')
             elif order.issell():
                 self.log(f'SELL EXECUTED{order.executed.price}')
-                ...
             self.bar_executed =  len(self)
-            self.order = None
+
+        self.order = None
    
     def next(self):
         # Simply log the closing price of the series from the reference
-        if self.order :
+        if self.order : 
             return
-        
         if not self.position :
 
             self.log('Close, %.2f' % self.dataclose[0])
@@ -39,18 +38,15 @@ class TestStrategy(bt.Strategy):
             # print(self.order)
             # print(self.position)
 
-
-
             if self.dataclose[0] < self.dataclose[-1] : 
                 if self.dataclose[-1] < self.dataclose[-2] :
 
                     self.log('BUY CREATE, %2f' % self.dataclose[0])
-                    self.order =  self.buy()
-        else :
-            if len(self) >= (self.bar_executed +5) :
+                    self.order = self.buy()
+        else:
+            if len(self) >= (self.bar_executed + 5) :
                 self.log(f'SELL CREATED{self.dataclose[0]}')
                 self.order = self.sell()
-
 
 
 # class DivergenceStrat(bt.Strategy) :

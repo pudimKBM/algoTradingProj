@@ -10,7 +10,7 @@ import backtrader.feeds as btfeeds
 
 
 cerebro = bt.Cerebro()
-cerebro.broker.setcash(200)
+cerebro.broker.setcash(100000)
 
 dataname="C:/Users/anton/Documents/GitHub/algoTradingProj/data/US30.csv"
 
@@ -19,12 +19,11 @@ data = btfeeds.GenericCSVData(
         dataname=dataname,
 
         fromdate=datetime(2018, 1, 1),
-        todate=datetime(2020, 12, 31),
+        todate=datetime(2019, 1, 1),
         timeframe=btfeeds.TimeFrame.Minutes,
         nullvalue=0.0,
 
-        dtformat=("%d-%m-%Y %H:%M:%S"),
-
+        dtformat=("%d.%m.%Y %H:%M:%S.%f"),
         datetime=0,
         high=2,
         low=3,
@@ -60,11 +59,11 @@ cerebro.adddata(data)
 
 cerebro.addstrategy(TestStrategy)
 
-cerebro.addsizer(bt.sizers.FixedSize, stake = 0.1)
-# print('Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
+cerebro.addsizer(bt.sizers.FixedSize, stake = 1.0)
+print('Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
 
 cerebro.run()
 
-# print('Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
+print('Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
 
 cerebro.plot()
