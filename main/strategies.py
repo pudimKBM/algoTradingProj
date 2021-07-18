@@ -25,6 +25,7 @@ class TestStrategy(bt.Strategy):
                 ...
             self.bar_executed =  len(self)
             self.order = None
+   
     def next(self):
         # Simply log the closing price of the series from the reference
         if self.order :
@@ -51,3 +52,11 @@ class TestStrategy(bt.Strategy):
                 self.order = self.sell()
 
 
+
+# class DivergenceStrat(bt.Strategy) :
+
+
+#     def __init__(self) :
+#         # Keep a reference to the "close" line in the data[0] dataseries
+#         self.dataclose = self.datas[0].close
+#         self.order =  None
