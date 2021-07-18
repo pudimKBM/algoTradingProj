@@ -10,7 +10,7 @@ import backtrader.feeds as btfeeds
 
 
 cerebro = bt.Cerebro()
-cerebro.broker.setcash(100000)
+cerebro.broker.setcash(500)
 
 dataname="C:/Users/anton/Documents/GitHub/algoTradingProj/data/US30.csv"
 
@@ -59,7 +59,7 @@ cerebro.adddata(data)
 
 cerebro.addstrategy(TestStrategy)
 
-cerebro.addsizer(bt.sizers.FixedSize, stake = 1.0)
+cerebro.addsizer(bt.sizers.FixedSize, stake = 0.1)
 print('Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
 
 cerebro.run()

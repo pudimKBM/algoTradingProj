@@ -14,7 +14,8 @@ class TestStrategy(bt.Strategy):
 
     def notify_order(self, order) :
         if order.status in [order.Submitted, order.Accepted] :
-            print(order)
+            print(order.status)
+            print(order.Accepted)
             return
 
         if order.status in [order.Completed] :
@@ -23,7 +24,8 @@ class TestStrategy(bt.Strategy):
             elif order.issell():
                 self.log(f'SELL EXECUTED{order.executed.price}')
             self.bar_executed =  len(self)
-
+        else :
+            print(order.status)
         self.order = None
    
     def next(self):
